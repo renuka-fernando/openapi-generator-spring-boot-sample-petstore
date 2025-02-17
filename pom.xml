@@ -161,6 +161,7 @@
                             <modelPackage>org.renuka.sample.myapp.rest.api.v1.dto</modelPackage>
                             <modelNameSuffix>DTO</modelNameSuffix>
                             <generateAliasAsModel>true</generateAliasAsModel>
+                            <templateDirectory>${project.basedir}/src/main/resources/server-templates</templateDirectory>
                             <configOptions>
                                 <sourceFolder>/java</sourceFolder>
                                 <delegatePattern>true</delegatePattern>
