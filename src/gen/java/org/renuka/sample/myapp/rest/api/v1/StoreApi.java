@@ -31,6 +31,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import jakarta.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
@@ -154,21 +155,24 @@ public interface StoreApi {
 
     // Override this method
     default  ResponseEntity<OrderDTO> getOrderById(Long orderId) {
-        getRequest().ifPresent(request -> {
+        AtomicInteger statusCode = new AtomicInteger(501);
+            getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"petId\" : 6, \"quantity\" : 1, \"id\" : 0, \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\", \"complete\" : false, \"status\" : \"placed\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    statusCode.set(200);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
                     String exampleString = "<Order> <id>123456789</id> <petId>123456789</petId> <quantity>123</quantity> <shipDate>2000-01-23T04:56:07.000Z</shipDate> <status>aeiou</status> <complete>true</complete> </Order>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
+                    statusCode.set(200);
                     break;
                 }
             }
         });
-        return new ResponseEntity<>(HttpStatus.valueOf(200));
+        return new ResponseEntity<>(HttpStatus.valueOf(statusCode.get()));
 
     }
 
@@ -209,21 +213,24 @@ public interface StoreApi {
 
     // Override this method
     default  ResponseEntity<OrderDTO> placeOrder(OrderDTO orderDTO) {
-        getRequest().ifPresent(request -> {
+        AtomicInteger statusCode = new AtomicInteger(501);
+            getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"petId\" : 6, \"quantity\" : 1, \"id\" : 0, \"shipDate\" : \"2000-01-23T04:56:07.000+00:00\", \"complete\" : false, \"status\" : \"placed\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    statusCode.set(200);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
                     String exampleString = "<Order> <id>123456789</id> <petId>123456789</petId> <quantity>123</quantity> <shipDate>2000-01-23T04:56:07.000Z</shipDate> <status>aeiou</status> <complete>true</complete> </Order>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
+                    statusCode.set(200);
                     break;
                 }
             }
         });
-        return new ResponseEntity<>(HttpStatus.valueOf(200));
+        return new ResponseEntity<>(HttpStatus.valueOf(statusCode.get()));
 
     }
 
